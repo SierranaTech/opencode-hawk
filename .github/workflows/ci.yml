@@ -49,7 +49,7 @@ jobs:
       - name: Prek (pre-commit hooks)
         run: |
           PREK_VERSION=0.4.9
-          curl -sSL "https://github.com/j178/prek/releases/download/v${PREK_VERSION}/prek-x86_64-unknown-linux-gnu.tar.gz" | sudo tar xzf - -C /usr/local/bin
+          curl -sSL "https://github.com/j178/prek/releases/download/v${PREK_VERSION}/prek-x86_64-unknown-linux-gnu.tar.gz" | sudo tar xzf - -C /usr/local/bin --strip-components=1
           prek run --all-files -c prek.toml
         shell: bash
 
