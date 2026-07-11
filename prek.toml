@@ -18,7 +18,7 @@ hooks = [
 [[repos]]
 repo = "local"
 hooks = [
-    { id = "go-mod-tidy", name = "go mod tidy", entry = "mise run tidy", language = "system", pass_filenames = false, files = "go\\.mod$|go\\.sum$" },
+    { id = "go-mod-tidy", name = "go mod tidy", entry = "go mod tidy", language = "system", pass_filenames = false, files = "go\\.mod$|go\\.sum$" },
     { id = "go-fmt", name = "go fmt", entry = "gofmt -w cmd/ internal/", language = "system", pass_filenames = false, files = "\\.go$" },
     { id = "go-vet", name = "go vet", entry = "go vet ./...", language = "system", pass_filenames = false, files = "\\.go$" },
 ]
