@@ -63,7 +63,7 @@ Always valid JSON. On success:
   "rolling":  {"status":"ok","reset_in_sec":12980,"usage_percent":0},
   "weekly":   {"status":"ok","reset_in_sec":93991,"usage_percent":47},
   "monthly":  {"status":"ok","reset_in_sec":1464013,"usage_percent":54},
-  "balance_microcents": 1000000000,
+  "balance_microcents": 10000000,
   "fetched_at": "2026-07-11T21:00:00Z"
 }
 ```

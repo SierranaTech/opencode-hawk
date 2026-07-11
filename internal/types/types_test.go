@@ -42,7 +42,7 @@ func TestOutputJSON_Success(t *testing.T) {
 		Rolling:           &UsageData{Status: "ok", ResetInSec: 1000, UsagePercent: pct},
 		Weekly:            &UsageData{Status: "ok", ResetInSec: 2000, UsagePercent: 10},
 		Monthly:           &UsageData{Status: "ok", ResetInSec: 3000, UsagePercent: 5},
-		BalanceMicroCents: int64Ptr(1000000000),
+		BalanceMicroCents: int64Ptr(10000000),
 		FetchedAt:         "2026-07-11T21:00:00Z",
 	}
 
@@ -56,7 +56,7 @@ func TestOutputJSON_Success(t *testing.T) {
 	for _, want := range []string{
 		`"rolling"`, `"weekly"`, `"monthly"`,
 		`"status": "ok"`, `"usage_percent": 42`,
-		`"balance_microcents": 1000000000`,
+		`"balance_microcents": 10000000`,
 		`"fetched_at"`,
 	} {
 		if !strings.Contains(out, want) {

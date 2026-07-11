@@ -167,8 +167,8 @@ func TestFetch_Success(t *testing.T) {
 	if result.Data.Monthly.UsagePercent != 54 {
 		t.Errorf("monthly pct: got %d, want 54", result.Data.Monthly.UsagePercent)
 	}
-	if result.Data.BalanceMicroCents == nil || *result.Data.BalanceMicroCents != 1000000000 {
-		t.Errorf("balance: got %v, want 1000000000", result.Data.BalanceMicroCents)
+	if result.Data.BalanceMicroCents == nil || *result.Data.BalanceMicroCents != 10000000 {
+		t.Errorf("balance: got %v, want 10000000", result.Data.BalanceMicroCents)
 	}
 }
 

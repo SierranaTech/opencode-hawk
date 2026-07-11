@@ -110,9 +110,12 @@ func Fetch(workspaceID, cookie, baseURL string) (*Result, error) {
 	}
 
 	// Extract balance (best-effort, non-fatal if missing).
+	// The dashboard stores this in 1e-8 dollar units (100,000,000 per dollar).
+	// Convert to microcents (1,000,000 per dollar) by dividing by 100.
 	if m := reBalance.FindStringSubmatch(html); len(m) == 2 {
 		if v, err := strconv.ParseInt(m[1], 10, 64); err == nil {
-			result.Data.BalanceMicroCents = &v
+			mc := v / 100
+			result.Data.BalanceMicroCents = &mc
 		}
 	}
 
