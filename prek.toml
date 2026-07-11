@@ -1,0 +1,24 @@
+#:schema https://www.schemastore.org/prek.json
+
+[[repos]]
+repo = "builtin"
+hooks = [
+    { id = "trailing-whitespace" },
+    { id = "end-of-file-fixer" },
+    { id = "mixed-line-ending" },
+    { id = "check-added-large-files" },
+    { id = "check-case-conflict" },
+    { id = "check-merge-conflict" },
+    { id = "detect-private-key" },
+    { id = "check-toml" },
+    { id = "check-yaml" },
+    { id = "check-json" },
+]
+
+[[repos]]
+repo = "local"
+hooks = [
+    { id = "go-mod-tidy", name = "go mod tidy", entry = "mise run tidy", language = "system", pass_filenames = false, files = "go\\.mod$|go\\.sum$" },
+    { id = "go-fmt", name = "go fmt", entry = "gofmt -w cmd/ internal/", language = "system", pass_filenames = false, files = "\\.go$" },
+    { id = "go-vet", name = "go vet", entry = "go vet ./...", language = "system", pass_filenames = false, files = "\\.go$" },
+]

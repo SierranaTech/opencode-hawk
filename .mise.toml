@@ -1,0 +1,40 @@
+[tools]
+go = "latest"
+
+[tasks.tidy]
+description = "Tidy Go module"
+run = "go mod tidy"
+
+[tasks.fmt]
+description = "Format Go source"
+run = "gofmt -w cmd/ internal/"
+
+[tasks.lint]
+description = "Vet Go source"
+run = "go vet ./..."
+
+[tasks.test]
+description = "Run all tests"
+run = "go test -count=1 -race ./..."
+
+[tasks.build]
+description = "Build for current platform"
+run = "go build -o bin/hawk ./cmd/hawk"
+
+[tasks.build-all]
+description = "Cross-compile for linux/amd64 and darwin/arm64"
+run = """
+mkdir -p bin
+GOOS=linux GOARCH=amd64 go build -o bin/hawk-linux-amd64 ./cmd/hawk
+GOOS=darwin GOARCH=arm64 go build -o bin/hawk-darwin-arm64 ./cmd/hawk
+"""
+
+[tasks.ci]
+description = "Run full CI pipeline (tidy, fmt check, vet, test, build)"
+run = """
+go mod tidy
+gofmt -d cmd/ internal/
+go vet ./...
+go test -count=1 -race ./...
+go build -o bin/hawk ./cmd/hawk
+"""
