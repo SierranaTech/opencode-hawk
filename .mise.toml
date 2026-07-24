@@ -38,3 +38,19 @@ go vet ./...
 go test -count=1 -race ./...
 go build -o bin/hawk ./cmd/hawk
 """
+
+[tasks.sync-lint-config]
+description = "Sync .golangci.yml from SierranaTech/actions (canonical)"
+# gh api rather than curl: actions repo is private, so the fetch needs
+# the caller's gh auth (locally) or a GITHUB_TOKEN with contents:read on
+# that repo (CI). See SierranaTech/actions/golangci-lint/README.md.
+# Write to a temp file first: on failure, .golangci.yml is preserved
+# (a naive redirect would clobber it with the 4xx error body).
+run = '''
+set -euo pipefail
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+gh api -H 'Accept: application/vnd.github.raw' \
+  'repos/SierranaTech/actions/contents/golangci-lint/common.yml' > "$tmp"
+mv "$tmp" .golangci.yml
+'''
