@@ -1,6 +1,6 @@
 module github.com/SierranaTech/opencode-hawk
 
-go 1.26.5
+go 1.27.0
 
 require github.com/zalando/go-keyring v0.2.8
 
