@@ -1,5 +1,5 @@
 [tools]
-go = "latest"
+go = "1.27"
 
 [tasks.tidy]
 description = "Tidy Go module"
